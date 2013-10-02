@@ -2,7 +2,7 @@
 #sh git-deploy <mysite.domain>
 
 base_path='/your/path/'
-repos_path=$base_path'repos/'
+repos_path=$base_path'git/'
 site_path=$base_path'/'$1
 repo=$1'.git'
 
