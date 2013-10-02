@@ -4,8 +4,8 @@ git-deploy
 Bash script for creating a deployable git repo
 
 * Configure script
+* Run
 ```
-* In terminal
 sh git-deploy
 ```
 * In your local repo
