@@ -1,0 +1,27 @@
+#!/bin/sh
+#sh git-deploy <mysite.domain>
+
+base_path='/your/path/'
+repos_path=$base_path'repos/'
+site_path=$base_path'/'$1
+repo=$1'.git'
+
+ssh -p 22  user@127.0.0.1 "echo 'Connecting to Server...';"\
+"cd $repos_path;"\
+"echo 'Moving to => '$repos_path;"\
+"mkdir $repo;"\
+"echo 'Creating new repository => '$repo;"\
+"cd $repo;"\
+"echo 'Initializating git repository...';"\
+"git init --bare;"\
+"echo 'Starting the magic';"\
+"git --bare update-server-info;"\
+"git config core.worktree $site_path;"\
+"echo 'Creating site dir => '$site_path;"\
+"mkdir $site_path;"\
+"echo 'Setting working tree to => '$site_path;"\
+"git config core.bare false;"\
+"git config receive.denycurrentbranch ignore;"\
+"(echo '#!/bin/sh'; echo 'git checkout -f') > hooks/post-receive;"\
+"chmod +x hooks/post-receive;"\
+"echo 'xKraty s magic done, everything is fine!';"
